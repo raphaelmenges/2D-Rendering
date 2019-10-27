@@ -1,0 +1,7 @@
+OpenGL Loader: https://bitbucket.org/alfonse/glloadgen/wiki/Home
+
+GLFW: http://www.glfw.org/
+
+picopng: http://lodev.org/lodepng/
+
+tinyobjloader: https://github.com/syoyo/tinyobjloader

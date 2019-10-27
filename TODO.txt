@@ -1,0 +1,56 @@
+- PICOPNG durch stb_image ersetzen
+- Fixed upate methode, für konsistente Simulation (15Hz etc)
+- Framerate cap für normales update (30Hz, 60Hz)
+
+- Doch in Componenten auslagern
+	- material soll nur parameter haben, wenn es sie auch braucht (sonst weise ich nicht zugewiesene uniforms zu :-| )
+	- externe xml für material wäre langsam schöner (mögliche parameter, defines was weiß ich)
+	- aktuell nur sehr halbherzig (visibility krams in object sehr hässlich)
+	- Kram aus Image sinnvoll in MeshRenderer auslagern!
+	- Wie genau mach ich das mit den Parametern? Doch string? Unschön..
+	- kann unterschiedliche materialien haben, daher verschieden parameter
+	- ModelView und vor allem ViewProjectionMatrix linking schöner machen (iwie verstreut)
+	- Transform auch als component aber immer direkt als member mitgeben
+	- Camera auch als component?
+
+- Erweiterung des StandardMaterial
+	- Discard Threshold
+
+- Atlas'ing bedenken: Bool bei Textur setten
+	-> type rausfinden sollte dann extra gemacht werden
+	-> shader braucht wegen map auf jeden fall atlas type
+	-> shader löschen wenn nicht mehr notwendig? wie? unregister wird ja nicht genutzt... smart pointer nutzen? wenn use == 1, stirb!
+
+- Code Review
+	- Wo möglich, Referenz statt pointer
+		- Referenzen mit "r" kennzeichnen
+	- Cleanup der Texturen/Shader/Meshes via Counter
+		- Kann man da was mit den RenderItems machen?
+		- Preloading / Unloading
+	- & an Typ, nicht an name
+	- _uchar als Typedef
+	- Logger sollte Shader Compiling Output ausgeben
+	- Materialien sollten noch Namen haben
+	- Nenn es nicht create wenn es kein init aufruft!
+	- Delta Time vlt doch als double?
+	- leere Buckets werde nicht mehr gelöscht..eventuell cleanup method?
+	- variablen initialisierung im konstruktor!
+	- was würde beim löschen eines render layers passieren?
+	- reformat alle documente mit visual
+	- wie genau hängt man dinge immer "unten dran" etc (relativ zum rand / mitte)
+	- wenn man pointer übergibt: link statt set
+	- glfw wegkapseln
+	
+- Debugging
+	- Culling Circles rendern mit bunten Linien
+...
+
+- Log one frame Funktion
+- Uniform buffer
+
+Probleme:
+- Texture wrap / filtering nur einmal gesetzt pro textur (sampler!)
+- Resources werden im Build Ordner nur bei rebuild geändert
+
+Notizen:
+- was passiert wenn kamera nicht rooted -> matrix wird nicht aktualisiert (erstmal nur 0len)
